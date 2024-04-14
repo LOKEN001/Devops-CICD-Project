@@ -26,12 +26,13 @@ environment{
             }
         }
         stage("Docker-publish") {
+          step{
             script{
                docker.withRegistry(registry, 'docker')
                 app.push()
               }
         }
-
+        }
     }
 }
 
