@@ -28,7 +28,7 @@ environment{
         stage("Docker-publish") {
           steps {
             script {
-              docker.withRegistry(registry, 'Doker-cred') {
+              withDockerRegistry(credentialsId: 'Docker-cred', url: 'https://hub.docker.com') {
                 app.push()
                }
               }
