@@ -17,7 +17,6 @@ environment{
                sh 'mvn clean deploy' 
             }
         }
-    stages {
         stage("Docker-Build") {
             steps {
               script{
@@ -26,7 +25,6 @@ environment{
                 
             }
         }
-    stages {
         stage("Docker-publish") {
             script{
                docker.withRegistry(registry, 'docker')
@@ -36,5 +34,4 @@ environment{
 
     }
 }
-}
-}
+
