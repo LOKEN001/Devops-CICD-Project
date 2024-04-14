@@ -9,6 +9,7 @@ pipeline {
     }
 environment{
     PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
+    DOCKER_REGISTRY_CREDENTIALS = credentials('Docker-cred')
 }
 
     stages {
@@ -28,7 +29,7 @@ environment{
         stage("Docker-publish") {
           steps {
             script {
-              withDockerRegistry(credentialsId: 'Docker-cred', url: 'https://hub.docker.com') {
+              docker.withRegistry('https://hub.docker.com', DOCKER_REGISTRY_CREDENTIALS) {
                 app.push()
                }
               }
