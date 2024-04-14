@@ -28,8 +28,8 @@ environment{
         stage("Docker-publish") {
           steps {
             script {
-               docker.withRegistry(registry, 'docker'){
-                  app.push()
+              withDockerRegistry(credentialsId: 'docker', toolName: 'Docker', url: 'https://hub.docker.com/') {
+                app.push()
                }
               }
         }
