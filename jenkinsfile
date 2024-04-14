@@ -19,17 +19,18 @@ environment{
         }
         stage("Docker-Build") {
             steps {
-              script{
+              script {
                 app = docker.build(imageName+":"+version)
               }
                 
             }
         }
         stage("Docker-publish") {
-          step{
-            script{
-               docker.withRegistry(registry, 'docker')
-                app.push()
+          steps {
+            script {
+               docker.withRegistry(registry, 'docker'){
+                  app.push()
+               }
               }
         }
         }
