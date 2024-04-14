@@ -1,4 +1,4 @@
-def registry = 'https://hub.docker.com/'
+def registry = 'https://hub.docker.com'
 def imageName = 'master101/docker/valaxyimage'
 def version = '2.1.2'
 pipeline {
@@ -28,7 +28,7 @@ environment{
         stage("Docker-publish") {
           steps {
             script {
-              withDockerRegistry(credentialsId: 'docker', url: 'https://hub.docker.com/') {
+              docker.withRegistry(registry, 'Doker-cred') {
                 app.push()
                }
               }
